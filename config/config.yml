@@ -1,0 +1,6 @@
+app:
+  AppName: "Go Blog Temp project"
+
+Server:
+  Host: "localhost"
+  Port: "8080"
