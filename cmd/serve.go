@@ -1,13 +1,26 @@
-package main
+package cmd
 
 import (
 	"fmt"
 
 	"github.com/gin-gonic/gin"
-	"github.com/phn00dev/go-blog-temp/cmd"
 	"github.com/phn00dev/go-blog-temp/config"
+	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
+
+func init() {
+	rootCmd.AddCommand(versionCmd)
+}
+
+var versionCmd = &cobra.Command{
+	Use:   "serve",
+	Short: "run project ",
+	Long:  `run project`,
+	Run: func(cmd *cobra.Command, args []string) {
+		serve()
+	},
+}
 
 func serve() {
 	configs := configSet()
@@ -19,10 +32,6 @@ func serve() {
 		})
 	})
 	r.Run(fmt.Sprintf("%s:%s", configs.Server.Host, configs.Server.Port))
-}
-
-func main() {
-	cmd.Execute()
 }
 
 func configSet() config.Config {
