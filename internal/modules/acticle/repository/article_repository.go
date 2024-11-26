@@ -1,7 +1,8 @@
 package repository
 
-import "github.com/phn00dev/go-blog-temp/internal/modules/acticle/models"
+import articleModel "github.com/phn00dev/go-blog-temp/internal/modules/acticle/models"
 
 type ArticleRepository interface {
-	List(limit int) []models.Article
+	List(limit int) []articleModel.Article
+	Find(id int) (*articleModel.Article, error)
 }

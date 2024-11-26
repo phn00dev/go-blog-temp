@@ -7,4 +7,5 @@ import (
 type ArticleService interface {
 	GetStories(limit int) articleDTO.Articles
 	GetFeatured(limit int) articleDTO.Articles
+	Find(id int) (*articleDTO.Article, error)
 }

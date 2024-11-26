@@ -26,3 +26,12 @@ func (a *ArticleRepositoryImp) List(limit int) []articleModel.Article {
 	}
 	return articles
 }
+
+func (a *ArticleRepositoryImp) Find(id int) (*articleModel.Article, error) {
+	var article articleModel.Article
+	err := a.DB.Joins("User").First(&article, id).Error
+	if err != nil {
+		return nil, err
+	}
+	return &article, nil
+}

@@ -1,0 +1,30 @@
+<!doctype html>
+{{ define "templates/errors/html/404" }}
+<html lang="en">
+{{ template "templates/layouts/html/head" . }}
+<body>
+
+<!-- Begin Nav
+================================================== -->
+{{ template "templates/layouts/html/header" . }}
+<!-- End Nav
+================================================== -->
+
+<div class="container">
+  <div class="mainheading">
+    <h1 class="sitetitle">{{ .status_code }}</h1>
+    <h2>{{.msg}}</h2>
+    <p class="lead">
+      {{.errors}}
+    </p>
+  </div>
+
+  {{ template "templates/layouts/html/footer" . }}
+
+
+</div>
+{{ template "templates/layouts/html/script" . }}
+</body>
+</html>
+
+{{ end }}
