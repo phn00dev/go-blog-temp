@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{{ define "modules/user/html/login" }}
+<html lang="en">
+{{ template "templates/layouts/html/head" . }}
+<body>
+
+<!-- Begin Nav
+================================================== -->
+{{ template "templates/layouts/html/header" . }}
+<!-- End Nav
+================================================== -->
+
+<div class="container">
+
+
+    <div class="col-md-12 col-md-offset-2 col-xs-12">
+        <div class="auth">
+            <div class="auth-triangle"></div>
+
+            <h2 class="auth-header">Log in</h2>
+
+            <form class="auth-container" method="POST" action="#">
+                <p>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Email" value="">
+                    <span class="text-danger"></span>
+                </p>
+                <p>
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Password">
+                    <span class="text-danger"></span>
+                </p>
+                <p><button type="submit">Log in</button></p>
+            </form>
+            <p class="text-center">Or <a href="#">Register</a></p>
+        </div>
+    </div>
+
+    {{ template "templates/layouts/html/footer" . }}
+    <!-- End Footer
+    ================================================== -->
+
+</div>
+<!-- /.container -->
+{{ template "templates/layouts/html/script" . }}
+</body>
+</html>
+
+{{ end }}
