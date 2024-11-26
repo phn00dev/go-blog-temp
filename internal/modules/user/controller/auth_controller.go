@@ -71,7 +71,35 @@ func (a *AuthController) Login(ctx *gin.Context) {
 }
 
 func (a *AuthController) LoginHandler(ctx *gin.Context) {
-	ctx.JSON(http.StatusOK, gin.H{
-		"title": "Login done",
-	})
+	var loginRequest authDTO.LoginRequest
+	if err := ctx.ShouldBind(&loginRequest); err != nil {
+		errors.Init()
+		errors.SetFormErrors(err)
+		sessions.Set(ctx, "errors", converters.MapToString(errors.Get()))
+		old.Init()
+		old.Set(ctx)
+		sessions.Set(ctx, "old", converters.UrlValuesToString(old.Get()))
+		ctx.Redirect(http.StatusFound, "/register")
+		return
+	}
+
+	user, err := a.userService.HandleUserLogin(loginRequest)
+	if err != nil {
+		errors.Init()
+		errors.Add("email", err.Error())
+		sessions.Set(ctx, "errors", converters.MapToString(errors.Get()))
+		old.Init()
+		old.Set(ctx)
+		sessions.Set(ctx, "old", converters.UrlValuesToString(old.Get()))
+		ctx.Redirect(http.StatusFound, "/login")
+		return
+	}
+	sessions.Set(ctx, "auth", strconv.Itoa(int(user.ID)))
+	log.Printf("user logged in successfully username: %v \n", user.Name)
+	ctx.Redirect(http.StatusFound, "/")
+}
+
+func (a *AuthController) Logout(ctx *gin.Context) {
+	sessions.Remove(ctx, "auth")
+	ctx.Redirect(http.StatusFound, "/")
 }

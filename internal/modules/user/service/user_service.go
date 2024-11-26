@@ -8,4 +8,5 @@ import (
 type UserService interface {
 	Create(registerRequest authDTO.RegisterRequest) (userDTO.User, error)
 	CheckUserExists(email string) bool
+	HandleUserLogin(loginRequest authDTO.LoginRequest) (userDTO.User, error)
 }

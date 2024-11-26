@@ -35,3 +35,27 @@ func Flash(ctx *gin.Context, key string) string {
 	}
 	return ""
 }
+
+func Get(ctx *gin.Context, key string) string {
+	session := sessions.Default(ctx)
+	response := session.Get(key)
+	err := session.Save()
+	if err != nil {
+		log.Fatal("session writer errors :", err)
+		return ""
+	}
+	if response != nil {
+		return response.(string)
+	}
+	return ""
+}
+
+func Remove(ctx *gin.Context, key string) {
+	session := sessions.Default(ctx)
+	session.Delete(key)
+	err := session.Save()
+	if err != nil {
+		log.Fatal("session remove errors :", err)
+		return
+	}
+}
