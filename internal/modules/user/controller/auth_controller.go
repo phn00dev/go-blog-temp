@@ -7,6 +7,7 @@ import (
 	"github.com/phn00dev/go-blog-temp/pkg/converters"
 	"github.com/phn00dev/go-blog-temp/pkg/errors"
 	"github.com/phn00dev/go-blog-temp/pkg/html"
+	"github.com/phn00dev/go-blog-temp/pkg/old"
 	"github.com/phn00dev/go-blog-temp/pkg/sessions"
 	"log"
 	"net/http"
@@ -34,6 +35,9 @@ func (a *AuthController) RegisterHandler(ctx *gin.Context) {
 		errors.Init()
 		errors.SetFormErrors(err)
 		sessions.Set(ctx, "errors", converters.MapToString(errors.Get()))
+		old.Init()
+		old.Set(ctx)
+		sessions.Set(ctx, "old", converters.UrlValuesToString(old.Get()))
 		ctx.Redirect(http.StatusFound, "/register")
 		return
 	}

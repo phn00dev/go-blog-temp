@@ -24,12 +24,14 @@
             <form class="auth-container" method="POST" action="/register">
                 <p>
                     <label for="username">Name</label>
-                    <input type="text" id="username" name="username" placeholder="Username" value="">
+                    <input type="text" id="username" name="username" placeholder="Username"
+                           value="{{range .OLD.username}}{{.}}{{end}}">
                     <span class="text-danger">{{.ERRORS.username}}</span>
                 </p>
                 <p>
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Email" value="">
+                    <input type="email" id="email" name="email" placeholder="Email"
+                           value="{{range .OLD.email}}{{.}}{{end}}">
                     <span class="text-danger">{{.ERRORS.email}}</span>
                 </p>
                 <p>
