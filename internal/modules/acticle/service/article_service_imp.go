@@ -1,7 +1,7 @@
 package service
 
 import (
-	articleModel "github.com/phn00dev/go-blog-temp/internal/modules/acticle/models"
+	articleDTO "github.com/phn00dev/go-blog-temp/internal/modules/acticle/dto"
 	articleRepository "github.com/phn00dev/go-blog-temp/internal/modules/acticle/repository"
 )
 
@@ -15,12 +15,14 @@ func NewArticleServiceImp() *ArticleServiceImp {
 	}
 }
 
-func (a *ArticleServiceImp) GetStories(limit int) []articleModel.Article {
+func (a *ArticleServiceImp) GetStories(limit int) articleDTO.Articles {
 	articles := a.articleRepo.List(6)
-	return articles
+	articlesResponses := articleDTO.ToArticles(articles)
+	return articlesResponses
 }
 
-func (a *ArticleServiceImp) GetFeatured(limit int) []articleModel.Article {
+func (a *ArticleServiceImp) GetFeatured(limit int) articleDTO.Articles {
 	articles := a.articleRepo.List(4)
-	return articles
+	articlesResponses := articleDTO.ToArticles(articles)
+	return articlesResponses
 }

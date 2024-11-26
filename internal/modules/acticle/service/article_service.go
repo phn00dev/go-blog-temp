@@ -1,8 +1,10 @@
 package service
 
-import articleModel "github.com/phn00dev/go-blog-temp/internal/modules/acticle/models"
+import (
+	articleDTO "github.com/phn00dev/go-blog-temp/internal/modules/acticle/dto"
+)
 
 type ArticleService interface {
-	GetStories(limit int) []articleModel.Article
-	GetFeatured(limit int) []articleModel.Article
+	GetStories(limit int) articleDTO.Articles
+	GetFeatured(limit int) articleDTO.Articles
 }
