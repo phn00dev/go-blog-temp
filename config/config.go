@@ -1,8 +1,9 @@
 package config
 
 type Config struct {
-	App    App
-	Server Server
+	App      App
+	Server   Server
+	Database Database
 }
 
 type App struct {
@@ -12,4 +13,12 @@ type App struct {
 type Server struct {
 	Host string
 	Port string
+}
+
+type Database struct {
+	Username string
+	Password string
+	Host     string
+	Port     string
+	DbName   string
 }
