@@ -1,0 +1,57 @@
+<!doctype html>
+{{define "modules/article/html/create" }}
+<html lang="en">
+{{ template "templates/layouts/html/head" . }}
+<body>
+
+<!-- Begin Nav
+================================================== -->
+{{ template "templates/layouts/html/header" . }}
+<!-- End Nav
+================================================== -->
+
+<div class="container">
+    <div class="mainheading">
+        <h1 class="sitetitle">{{ .title }}</h1>
+        <p class="lead">
+        </p>
+    </div>
+    <!-- End Site Title
+    ================================================== -->
+
+    <!-- Begin Form
+    ================================================== -->
+    <div class="col-md-12 col-xs-12">
+        <form class="article-form-container" action=# method="POST">
+            <div class="form-group">
+                <label class="h4 form-control-label" for="title">Title</label>
+                <input type="text" class="form-control" name="title" id="title" placeholder="Title" required="" value="">
+                <span class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="h4 form-control-label" for="content">Content</label>
+                <textarea class="form-control" name="content" id="content" placeholder="Content" required="" rows="10"></textarea>
+                <span class="text-danger"></span>
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+    <!-- End Form
+    ================================================== -->
+
+    <!-- Begin Footer
+    ================================================== -->
+    {{ template "templates/layouts/html/footer" . }}
+    <!-- End Footer
+    ================================================== -->
+
+</div>
+<!-- /.container -->
+{{ template "templates/layouts/html/script" . }}
+</body>
+</html>
+{{end}}

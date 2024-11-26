@@ -44,3 +44,9 @@ func (a *ArticleController) Show(ctx *gin.Context) {
 	})
 
 }
+
+func (a *ArticleController) Create(ctx *gin.Context) {
+	html.Render(ctx, http.StatusOK, "modules/article/html/create", gin.H{
+		"title": "Create article",
+	})
+}
