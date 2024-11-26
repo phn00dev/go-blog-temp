@@ -23,8 +23,8 @@ func ToArticle(article articleModel.Article) Article {
 		ID:        article.ID,
 		Title:     article.Title,
 		Content:   article.Content,
-		Image:     "/assets/image.png",
-		CreatedAt: article.CreatedAt.Format("02-01-2006 15:04:05"),
+		Image:     "/assets/download.png",
+		CreatedAt: article.CreatedAt.Format("02-01-2006"),
 		User:      userDTO.ToUser(article.User),
 	}
 }

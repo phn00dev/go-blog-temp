@@ -16,13 +16,13 @@ func NewArticleServiceImp() *ArticleServiceImp {
 }
 
 func (a *ArticleServiceImp) GetStories(limit int) articleDTO.Articles {
-	articles := a.articleRepo.List(6)
+	articles := a.articleRepo.List(limit)
 	articlesResponses := articleDTO.ToArticles(articles)
 	return articlesResponses
 }
 
 func (a *ArticleServiceImp) GetFeatured(limit int) articleDTO.Articles {
-	articles := a.articleRepo.List(4)
+	articles := a.articleRepo.List(limit)
 	articlesResponses := articleDTO.ToArticles(articles)
 	return articlesResponses
 }
