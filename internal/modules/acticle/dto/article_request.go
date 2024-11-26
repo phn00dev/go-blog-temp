@@ -1,6 +1,6 @@
 package dto
 
 type CreateArticleRequest struct {
-	Title   string
-	Content string
+	Title   string `form:"title"  binding:"required"`
+	Content string `form:"content"  binding:"required"`
 }

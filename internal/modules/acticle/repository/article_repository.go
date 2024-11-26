@@ -5,4 +5,5 @@ import articleModel "github.com/phn00dev/go-blog-temp/internal/modules/acticle/m
 type ArticleRepository interface {
 	List(limit int) []articleModel.Article
 	Find(id int) (*articleModel.Article, error)
+	Create(article articleModel.Article) articleModel.Article
 }

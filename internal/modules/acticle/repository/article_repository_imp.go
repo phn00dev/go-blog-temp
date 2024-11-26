@@ -35,3 +35,9 @@ func (a *ArticleRepositoryImp) Find(id int) (*articleModel.Article, error) {
 	}
 	return &article, nil
 }
+
+func (a *ArticleRepositoryImp) Create(article articleModel.Article) articleModel.Article {
+	var newArticle articleModel.Article
+	a.DB.Create(&article).Scan(&newArticle)
+	return newArticle
+}
