@@ -49,7 +49,6 @@ func (a *ArticleController) Show(ctx *gin.Context) {
 	}
 
 	html.Render(ctx, http.StatusOK, "modules/article/html/show", gin.H{
-		"title":   "show article",
 		"article": articleResponse,
 	})
 
