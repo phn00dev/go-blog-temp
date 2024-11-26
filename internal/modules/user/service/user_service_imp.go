@@ -7,6 +7,7 @@ import (
 	userModel "github.com/phn00dev/go-blog-temp/internal/modules/user/models"
 	userRepository "github.com/phn00dev/go-blog-temp/internal/modules/user/repository"
 	"golang.org/x/crypto/bcrypt"
+	"log"
 )
 
 type UserServiceImp struct {
@@ -32,4 +33,14 @@ func (userService *UserServiceImp) Create(registerRequest authDTO.RegisterReques
 	}
 	newUser := userService.userRepo.Create(user)
 	return userDTO.ToUser(newUser), nil
+}
+
+func (userService *UserServiceImp) CheckUserExists(email string) bool {
+	user := userService.userRepo.FindByEmail(email)
+	if user.ID != 0 {
+		log.Printf("user_id", user.ID)
+		return true
+	}
+	log.Printf("user_id", user.ID)
+	return false
 }

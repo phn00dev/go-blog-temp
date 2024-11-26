@@ -11,6 +11,7 @@ import (
 	"github.com/phn00dev/go-blog-temp/pkg/sessions"
 	"log"
 	"net/http"
+	"strconv"
 )
 
 type AuthController struct {
@@ -42,12 +43,23 @@ func (a *AuthController) RegisterHandler(ctx *gin.Context) {
 		return
 	}
 
+	if a.userService.CheckUserExists(registerRequest.Email) {
+		errors.Init()
+		errors.Add("Email", "Email address already exists")
+		sessions.Set(ctx, "errors", converters.MapToString(errors.Get()))
+		old.Init()
+		old.Set(ctx)
+		sessions.Set(ctx, "old", converters.UrlValuesToString(old.Get()))
+		ctx.Redirect(http.StatusFound, "/register")
+		return
+	}
+
 	// create user
 	user, err := a.userService.Create(registerRequest)
 	if err != nil {
 		ctx.Redirect(http.StatusFound, "/register")
 	}
-
+	sessions.Set(ctx, "auth", strconv.Itoa(int(user.ID)))
 	log.Printf("user created successfully username: %v \n", user.Name)
 	ctx.Redirect(http.StatusFound, "/")
 }
