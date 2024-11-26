@@ -1,5 +1,4 @@
-### Golang blog project with template
-
+### Golang blog project with template 
 
  #### Home Page:
 ![Home page image](screens/home_page.png "Index Page")
