@@ -4,8 +4,10 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/phn00dev/go-blog-temp/internal/modules/user/dto/authDTO"
 	"github.com/phn00dev/go-blog-temp/internal/modules/user/service"
+	"github.com/phn00dev/go-blog-temp/pkg/converters"
 	"github.com/phn00dev/go-blog-temp/pkg/errors"
 	"github.com/phn00dev/go-blog-temp/pkg/html"
+	"github.com/phn00dev/go-blog-temp/pkg/sessions"
 	"log"
 	"net/http"
 )
@@ -31,10 +33,7 @@ func (a *AuthController) RegisterHandler(ctx *gin.Context) {
 	if err := ctx.ShouldBind(&registerRequest); err != nil {
 		errors.Init()
 		errors.SetFormErrors(err)
-		ctx.JSON(http.StatusOK, gin.H{
-			"errors": errors.Get(),
-		})
-		return
+		sessions.Set(ctx, "errors", converters.MapToString(errors.Get()))
 		ctx.Redirect(http.StatusFound, "/register")
 		return
 	}

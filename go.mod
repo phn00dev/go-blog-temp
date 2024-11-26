@@ -4,6 +4,7 @@ go 1.23.1
 
 require (
 	github.com/brianvoe/gofakeit/v6 v6.28.0
+	github.com/gin-contrib/sessions v1.0.1
 	github.com/gin-gonic/gin v1.10.0
 	github.com/go-playground/validator/v10 v10.23.0
 	github.com/spf13/cobra v1.8.1
@@ -25,6 +26,9 @@ require (
 	github.com/go-playground/universal-translator v0.18.1 // indirect
 	github.com/go-sql-driver/mysql v1.7.0 // indirect
 	github.com/goccy/go-json v0.10.3 // indirect
+	github.com/gorilla/context v1.1.2 // indirect
+	github.com/gorilla/securecookie v1.1.2 // indirect
+	github.com/gorilla/sessions v1.2.2 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect

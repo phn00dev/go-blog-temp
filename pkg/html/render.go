@@ -6,6 +6,6 @@ import (
 )
 
 func Render(ctx *gin.Context, statusCode int, pathName string, data gin.H) {
-	data = view.WithGlobalData(data)
+	data = view.WithGlobalData(ctx, data)
 	ctx.HTML(statusCode, pathName, data)
 }
